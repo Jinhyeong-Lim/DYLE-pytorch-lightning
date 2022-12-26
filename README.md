@@ -6,11 +6,9 @@ Reproduction of source code for ACL 2022 paper DYLE using Pytorch-Lightning: Dyn
 - dataloaders: the python scripts to convert original dataset to the uniform format.
 - oracle: Scripts to generate extractive oracles
 - utils: Various utility functions, such as cleaning and rouge
-- Experiment.py: Main file for our model
 - config.py: Set model configuration
 - Modules: Contains implementation of our dynamic extraction module
-- test.py: Run test set
-- train.py: Train the model
+- main.py: Train the model
 
 ## Training and Evaluation
 
