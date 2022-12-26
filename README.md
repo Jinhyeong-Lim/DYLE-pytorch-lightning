@@ -16,7 +16,7 @@ Reproduction of source code for ACL 2022 paper DYLE using Pytorch-Lightning: Dyn
 
 ### Download the Datasets and Models
 - Download QMSum dataset from https://github.com/Yale-LILY/QMSum
-
+- Using Pyrouge Metric from https://github.com/bheinzerling/pyrouge
 ## Training
 
 ```
