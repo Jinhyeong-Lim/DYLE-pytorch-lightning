@@ -21,6 +21,10 @@ Reproduction of source code for ACL 2022 paper DYLE using Pytorch-Lightning: Dyn
   python main.py --gpus -1 --distributed_backend dp
 ```
 
+## References
+[DYLE](https://github.com/Yale-LILY/DYLE)
+
+
 ## Citation
 ```bibtex
 @inproceedings{mao2021dyle,
