@@ -3,7 +3,6 @@ import numpy as np
 import nltk
 from dataloaders.qmsum import QMSum
 from pytorch_lightning import Trainer
-nltk.download('punkt')
 import random
 from tqdm import tqdm
 from config import Config
@@ -175,15 +174,9 @@ class MyLightningModule(LightningModule):
                 doc_scores = torch.cat([doc_scores, gpu_wrapper(torch.zeros((1, config.top_k - len(retriever_topk_indices)))).fill_(-float('inf'))], dim=1)
                 retriever_topk_indices = retriever_topk_indices + [retriever_topk_indices[-1]] * (config.top_k - len(retriever_topk_indices))
 
-            encoder_answer_relevance_atten = torch.tensor([[0 for x in range(config.max_source_len - config.top_k)]])
-            encoder_answer_relevance_atten = torch.cat((torch.softmax(doc_scores, dim=1).clamp(min=1e-5), gpu_wrapper(encoder_answer_relevance_atten)), dim=1)
-            
             generator_outputs = self.generator(context_input_ids=context_input_ids[:, retriever_topk_indices].contiguous().view(context_input_ids.shape[0] * config.top_k, -1),
                                                 context_attention_mask=context_attention_mask[:, retriever_topk_indices].contiguous().view(context_attention_mask.shape[0] * config.top_k, -1),
                                                 doc_scores=doc_scores,
-                                                ###
-                                                encoder_answer_relevance_atten=encoder_answer_relevance_atten,
-                                                ###
                                                 labels=labels)  
                 
             return generator_outputs, ret_loss
